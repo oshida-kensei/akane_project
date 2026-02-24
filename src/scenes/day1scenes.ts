@@ -26,15 +26,22 @@ export class Day1Scene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image("bg_train", "src/assets/電車内.jpg")
+        this.load.image("bg_train", "src/assets/電車内４.png")
     }
 
     create(){
-
-        
-
-        this.backgroundLayer = this.add.image(640, 360, "bg_train").setScale(0.4);
-        this.characterLayer = this.add.image(640, 360, "").setVisible(false);
+        this.backgroundLayer = this.add.image(640, 360, "bg_train").setScale(1);
+        this.tweens.add({
+            targets: this.backgroundLayer,
+            y: 360 + 4,                // 中心(360)から2pxだけ下に動く
+            duration: 100,            // 2秒かけて往復
+            ease: 'Cubic.easeOut',    // 滑らかな動き
+            yoyo: true,
+            yoyoDelay: 150,
+            hold: 3000,                // 行って戻ってくる
+            repeat: -1,                // 無限に繰り返す
+        });
+        this.characterLayer = this.add.image(640, 360, "bg_train").setVisible(false);
         this.effectManager = new EffectManager(this, this.backgroundLayer, this.characterLayer);
 
         this.textBox = new TextBox(this, 120, 540, 1040, 160)
