@@ -26,7 +26,7 @@ export class Day1Scene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image("bg_train", "src/assets/電車内４.png")
+        this.load.image("bg_train", "src/assets/train.png")
     }
 
     create(){
